@@ -1,0 +1,97 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #000;
+}
+.calendar-wrap{
+  width: 744px;
+  border: 1px solid #4C4D4F;
+  border-radius: 4px;
+  margin: 40px auto;
+}
+.head{
+  height: 50px;
+  border-bottom: 1px solid #363637;
+  line-height: 50px;
+  color: #E5EAF3;
+  padding: 13px 20px;
+}
+#year, #month{
+  font-size: 16px;
+  line-height: 24px;
+  float: left;
+}
+#year{
+  margin-right: 4px;
+}
+.btn-wrap{
+  float: right;
+  border: 1px solid #4C4D4F;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.btn-wrap span:hover{
+  color:#409eff;
+  background-color: #18222c;
+}
+#btn-previous, #btn-today{
+  border-right: 1px solid #4C4D4F;
+}
+#btn-previous, #btn-today, #btn-next{
+  display: block;
+  float: left;
+  cursor: pointer;
+  line-height: 14px;
+  padding: 5px 11px;
+  font-size: 12px;
+}
+.content{
+  padding: 12px 20px 35px;
+}
+.content .week{
+  height: 46px;
+}
+.content .week div{
+  float: left;
+  width: 100px;
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
+  color: #CFD3DC;
+}
+.content .date-number{
+  border-top: 1px solid #363637;
+  border-left: 1px solid #363637;
+}
+#number-wrap{
+  overflow: hidden;
+  list-style: none;
+}
+#number-wrap li{
+  width: 100px;
+  height: 87px;
+  border-right: 1px solid #363637;
+  border-bottom: 1px solid #363637;
+  float: left;
+  color: #E5EAF3;
+  padding: 8px;
+  font-size: 16px;
+}
+#number-wrap li:hover{
+  color: #409eff;
+  background-color: #18222c;
+  cursor: pointer;
+}
+#number-wrap li.is-selected{
+  background-color: #18222c;
+  color: #1989fa;
+}
+#number-wrap li.is-today{
+  color: #1989fa;
+}
+#number-wrap li.previous-box, #number-wrap li.next-box{
+  color: #8D9095;
+}
