@@ -93,11 +93,13 @@
       // 上个月多少天
       const previousDateNumber = currentDate.getDate();
 
+      // 设置成下个月
       currentDate.setDate(63);
       // 下个月的年份与月份
       const nextYear = currentDate.getFullYear();
       const nextMonth = currentDate.getMonth();
 
+      // 设置成当前月
       currentDate.setDate(0);
       
       // 当前月份多少天
@@ -107,14 +109,18 @@
       // 需要渲染下个月的格子是多少个
       const nextDeltaNumber = 6 - currentDateWeek;
 
+      // 生成一个文档碎片，挂载li元素
       const fragment = document.createDocumentFragment();
 
+      // 所有li元素都是append追加到ul元素下，所以每次挂载前都清空以前的元素
       ulElement.innerHTML = null;
-      // 上个月
+
+      // 生成并挂载上个月的li
       for (let i = currentFirstWeek; i > 0; i --) {
         let previousLi = document.createElement('li');
         previousLi.innerText = previousDateNumber - i + 1;
         previousLi.classList.add('previous-box');
+        // 将年月日信息保存在li的store当中，点击的时候方便读取，store是自己随意定义的名称
         previousLi.store = {
           year: previousYear,
           month: previousMonth,
@@ -122,7 +128,7 @@
         };
         fragment.appendChild(previousLi);
       }
-      // 当前月
+      // 生成并挂载当前月的li
       for (let i = 1; i <= currentDateNumber; i ++) {
         let currentLi = document.createElement('li');
         currentLi.innerText = i;
@@ -131,15 +137,17 @@
           month: currentMonth,
           date: i,
         };
+        // 渲染到了今年今月今日就加个is-today的class类，做个标记
         if (nowYear === currentYear && nowMonth === currentMonth && nowDay === i) {
           currentLi.classList.add('is-today');
         }
+        // 渲染到了被选中的年月日则加个is-selected的class类，标记一下
         if (selectedYear === currentYear && selectedMonth === currentMonth && selectedDay === i) {
           currentLi.classList.add('is-selected');
         }
         fragment.appendChild(currentLi);
       }
-      // 下个月
+      // 生成并挂载下个月的li
       for (let i = 0; i < nextDeltaNumber; i ++) {
         let nextLi = document.createElement('li');
         nextLi.innerText = i + 1;
@@ -170,6 +178,7 @@
     // 点击li，事件代理到ul上
     ulElement.onclick = (e) => {
       const { year, month, date } = e.target.store;
+      // 如果点击的li是已经被选中的，且是当前面板的年月，则不必再render面板日期
       if (year === selectedYear
         && month === selectedMonth
         && date === selectedDay
@@ -222,6 +231,7 @@
     // 点击今天
     todayBtn.onclick = initRenderFn;
 
+    // 初始渲染
     initRenderFn();
 
   </script>
